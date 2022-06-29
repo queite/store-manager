@@ -19,7 +19,7 @@ services:
     working_dir: /home/node/app
     # Lista de volumes (diretórios) mapeados de fora para dentro do container
     volumes:
-      # Monta o diretório atual, com todos os dados do projeto, 
+      # Monta o diretório atual, com todos os dados do projeto,
       # dentro do diretório /app
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules
@@ -43,6 +43,9 @@ services:
   db:
     container_name: store_manager_db
     image: mysql:5.7
+    volumes:
+      - ./migration.sql:/docker-entrypoint-initdb.d/migration.sql
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
