@@ -1,6 +1,6 @@
 const NotFoundError = require('../helpers/NotFoundError');
 const productModel = require('../models/productModel');
-const { schemas, validateSchema } = require('./validations');
+const { schemas, validateSchema } = require('../helpers/validations');
 
 const listAll = async () => {
   const products = await productModel.listAll();

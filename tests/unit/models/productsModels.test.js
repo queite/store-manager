@@ -34,4 +34,12 @@ describe('Model de produtos', () => {
       expect(response).to.have.keys[('id', 'name')];
     });
   });
+
+  describe('#insertProduct', () => {
+    it('retorna um id', async () => {
+      sinon.stub(connection, "execute").resolves([{ insertId: 1 }]);
+      const response = await productModel.insertProduct({ name: 'ProdutoX' });
+      expect(response).to.be.equal(1);
+    });
+  });
 });
