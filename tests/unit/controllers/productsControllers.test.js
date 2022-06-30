@@ -13,8 +13,6 @@ describe('Controller de produtos', () => {
 
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub();
-
-    sinon.stub(productService, "listAll").resolves(products);
   });
 
   afterEach(() => {
@@ -22,6 +20,11 @@ describe('Controller de produtos', () => {
   });
 
   describe('#listProducts', () => {
+
+    before(() => {
+      sinon.stub(productService, "listAll").resolves(products);
+    });
+
     it('chama o método status com o valor 200', async () => {
       await productsController.listAll(req, res);
       expect(res.status.calledWith(200)).to.be.equal(true);
@@ -51,6 +54,23 @@ describe('Controller de produtos', () => {
 
     it("chama o método json com um objeto contendo as propriedades id e name", async () => {
       await productsController.getById(req, res);
+      expect(res.json).to.have.keys[("id", "name")];
+    });
+  });
+
+  describe("#insertProduct", () => {
+
+      beforeEach(() => {
+        req.body = { name: 'ProdutoY' };
+      });
+
+    it("chama o método status com o valor 201", async () => {
+      await productsController.insertProduct(req, res);
+      expect(res.status.calledWith(201)).to.be.equal(true);
+    });
+
+    it("chama o método json com um objeto contendo as propriedades id e name", async () => {
+      await productsController.insertProduct(req, res);
       expect(res.json).to.have.keys[("id", "name")];
     });
   });
