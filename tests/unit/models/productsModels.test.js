@@ -1,18 +1,10 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 const productModel = require("../../../models/productModel");
+const products = require("../../../helpers/productsMock");
+
 
 describe('Model de produtos', () => {
-  const products = [
-    {
-      id: 1,
-      name: 'Martelo de Thor',
-    },
-    {
-      id: 2,
-      name: 'Traje de encolhimento',
-    },
-  ];
   sinon.stub(productModel, 'listAll').resolves(products);
 
   afterEach(() => {
@@ -23,6 +15,7 @@ describe('Model de produtos', () => {
     it('retorna um array de produtos', async () => {
       const response = await productModel.listAll();
       expect(response).to.be.an('array');
+      products.forEach((product) => expect(product).to.be.an("object"));
     });
 
     it('os objetos dentro do array possuem as propriedades id e name', async () => {
