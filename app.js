@@ -1,7 +1,6 @@
 const express = require('express');
 require('express-async-errors');
-
-const productController = require('./controllers/productController');
+const productsRoute = require('./routes/productRoutes');
 
 const app = express();
 app.use(express.json());
@@ -11,7 +10,8 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.get('/products', productController.listProducts);
+app.use('/products', productsRoute);
+
 // app.get("/products/:id",);
 
 // não remova essa exportação, é para o avaliador funcionar

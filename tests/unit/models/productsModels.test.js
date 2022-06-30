@@ -28,7 +28,6 @@ describe('Model de produtos', () => {
     it('os objetos dentro do array possuem as propriedades id e name', async () => {
       const response = await productModel.listAll();
       expect(response).to.have.keys['id', 'name'];
-      console.log(response);
     })
   });
 });

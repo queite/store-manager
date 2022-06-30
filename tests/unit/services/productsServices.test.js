@@ -25,9 +25,5 @@ describe('Service de produtos', () => {
       const response = await productService.listAll();
       expect(response).to.be.an('array');
     });
-
-    // it('retona false quando não há produtos', async () => {
-
-    // });
   });
 });
