@@ -15,8 +15,6 @@ app.use('/products', productsRoute);
 
 app.use(errMiddleware);
 
-const APP_PORT = Number(process.env.APP_PORT || 3000);
-app.listen(APP_PORT, () => console.log(`running on port ${APP_PORT}`));
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima
 // você deve usar o arquivo index.js para executar sua aplicação
