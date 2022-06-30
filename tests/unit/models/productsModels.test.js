@@ -4,7 +4,6 @@ const productModel = require('../../../models/productModel');
 const { products, product } = require('../../../helpers/productsMock');
 const connection = require('../../../models/connection');
 
-
 describe('Model de produtos', () => {
 
   afterEach(() => {

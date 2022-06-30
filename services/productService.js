@@ -1,5 +1,6 @@
 const NotFoundError = require('../helpers/NotFoundError');
 const productModel = require('../models/productModel');
+const { schemas, validateSchema } = require('./validations');
 
 const listAll = async () => {
   const products = await productModel.listAll();
@@ -12,7 +13,14 @@ const getById = async (id) => {
   return product;
 };
 
+const insertProduct = async (obj) => {
+  const validData = validateSchema(schemas.name, obj);
+  const id = await productModel.insertProduct(validData);
+  return id;
+};
+
 module.exports = {
   listAll,
   getById,
+  insertProduct,
 };
