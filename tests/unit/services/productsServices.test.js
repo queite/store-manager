@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const productService = require('../../../services/productService');
 const productModel = require("../../../models/productModel");
 const { expect } = require('chai');
-const products = require('../../../helpers/productsMock');
+const { products } = require('../../../helpers/productsMock');
 
 describe('Service de produtos', () => {
 

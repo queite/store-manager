@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const products = require('../../../helpers/productsMock');
+const { products } = require('../../../helpers/productsMock');
 
 const productsController = require('../../../controllers/productController');
 const productService = require('../../../services/productService');
