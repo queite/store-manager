@@ -20,4 +20,5 @@ const insertSaleProduct = async (array) => {
 
 module.exports = {
   insertSaleProduct,
+  insertSale,
 };

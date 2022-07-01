@@ -14,7 +14,13 @@ const product = {
   name: 'Traje de encolhimento',
 };
 
+const getByIdResponse = {
+  id: 1,
+  name: 'Martelo de Thor',
+};
+
 module.exports = {
   products,
   product,
+  getByIdResponse,
 };
