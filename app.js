@@ -1,7 +1,8 @@
 const express = require('express');
 const errMiddleware = require('./middlewares/errMiddleware');
 require('express-async-errors');
-const productsRoute = require('./routes/productRoutes');
+const productsRoutes = require('./routes/productRoutes');
+const salesRoutes = require('./routes/salesRoutes');
 
 const app = express();
 app.use(express.json());
@@ -11,7 +12,8 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use('/products', productsRoute);
+app.use('/products', productsRoutes);
+app.use('/sales', salesRoutes);
 
 app.use(errMiddleware);
 

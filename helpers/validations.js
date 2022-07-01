@@ -4,7 +4,10 @@ const schemas = {
   name: Joi.object().keys({
     name: Joi.string().min(5).required(),
   }),
-  // define all the other schemas below
+  sales: Joi.object().keys({
+    productId: Joi.required(),
+    quantity: Joi.number().min(1).required(),
+  }),
 };
 
 const validateSchema = (schema, dataToValidate) => {
@@ -12,38 +15,6 @@ const validateSchema = (schema, dataToValidate) => {
   if (error) throw error;
   return value;
 };
-
-// const validate = {
-//   validateBody: (params) => {
-//     const schema = Joi.object({
-//       name: Joi.string().required(),
-//     });
-
-//     const { error, value } = schema.validate(params);
-
-//     if (error) throw error;
-
-//     return value;
-//   },
-// };
-
-// const validateUser = (schema) => {
-//   return (req, res, next) => {
-//     const { error } = schema.validate(req.body);
-//     const valid = error == null;
-
-//     if (valid) {
-//       next();
-//     } else {
-//       const { details } = error;
-
-//       const message = details.map((i) => i.message).join(",");
-
-//       console.log("error", message);
-//       res.status(422).json({ error: true, message });
-//     }
-//   };
-// };
 
 module.exports = {
   validateSchema,
