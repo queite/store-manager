@@ -5,7 +5,6 @@ const productModel = require('../models/productModel');
 
 const existProductId = async (array) => {
   const exist = await Promise.all(array.map(({ productId }) => productModel.getById(productId)));
-  console.log(exist);
   if (exist.includes(undefined)) throw new NotFoundError('Product not found');
 };
 
