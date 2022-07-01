@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 const saleService = require('../../../services/saleService');
-const { salesResponse } = require('../../../helpers/salesMock');
+const { salesResponse, salesList, saleById } = require('../../../helpers/salesMock');
 const saleController = require('../../../controllers/saleController');
 
 describe('Controller de vendas', () => {
@@ -31,6 +31,39 @@ describe('Controller de vendas', () => {
     it('os objetos contêm as propriedades id e itemsSold', async () => {
       await saleController.insertSaleProduct(req, res);
       expect(res.json.calledWith(salesResponse));
+    });
+  });
+
+  describe("#listAll", () => {
+    beforeEach(() => {
+      sinon.stub(saleService, "listAll").resolves(salesList);
+    });
+
+    it("chama o método status com o valor 200", async () => {
+      await saleController.listAll(req, res);
+      expect(res.status.calledWith(200)).to.be.equal(true);
+    });
+
+    it("os objetos contêm as propriedades id e itemsSold", async () => {
+      await saleController.listAll(req, res);
+      expect(res.json.calledWith(salesList));
+    });
+  });
+
+  describe("#getById", () => {
+    beforeEach(() => {
+      req.params = { id: 1 };
+      sinon.stub(saleService, "getById").resolves(saleById);
+    });
+
+    it("chama o método status com o valor 200", async () => {
+      await saleController.getById(req, res);
+      expect(res.status.calledWith(200)).to.be.equal(true);
+    });
+
+    it("os objetos contêm as propriedades id e itemsSold", async () => {
+      await saleController.getById(req, res);
+      expect(res.json.calledWith(saleById));
     });
   });
 });
