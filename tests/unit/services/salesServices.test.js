@@ -23,7 +23,7 @@ describe('Service de Vendas', () => {
       expect(response).to.be.deep.eq(salesResponse);
     });
 
-    it('quando não há produto com id especidicado retorna erro o NotFoundError', async () => {
+    it('quando não há produto com id especificado retorna erro o NotFoundError', async () => {
       sinon.stub(productModel, 'getById').resolves(getByIdResponse);
       expect(saleService.insertSaleProduct(salesWrongArray)).to.be.rejectedWith(NotFoundError);
     });
