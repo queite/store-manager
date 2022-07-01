@@ -16,6 +16,19 @@ const insertSaleProduct = async (array) => {
   return { id, itemsSold: array };
 };
 
+const listAll = async () => {
+  const sales = await saleModel.listAll();
+  return sales;
+};
+
+const getById = async (id) => {
+  const sale = await saleModel.getById(id);
+  if (!sale.length) throw new NotFoundError('Sale not found');
+  return sale;
+};
+
 module.exports = {
   insertSaleProduct,
+  listAll,
+  getById,
 };
