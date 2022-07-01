@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const saleService = require('../../../services/saleService');
 const saleModel = require('../../../models/saleModel');
-const { salesResponse, salesArray, salesWrongArray } = require('../../../helpers/salesMock');
+const { salesResponse, salesArray, salesWrongArray, salesList, saleById } = require('../../../helpers/salesMock');
 const productModel = require('../../../models/productModel');
 const { getByIdResponse } = require('../../../helpers/productsMock');
 const NotFoundError = require('../../../helpers/NotFoundError');
@@ -26,6 +26,30 @@ describe('Service de Vendas', () => {
     it('quando não há produto com id especidicado retorna erro o NotFoundError', async () => {
       sinon.stub(productModel, 'getById').resolves(getByIdResponse);
       expect(saleService.insertSaleProduct(salesWrongArray)).to.be.rejectedWith(NotFoundError);
+    });
+  });
+
+  describe("#listAll", () => {
+    it("retorna array de objetos quando há vendas", async () => {
+      sinon.stub(saleModel, "listAll").resolves(salesList);
+
+      const response = await saleService.listAll();
+      expect(response).to.be.an("array");
+      response.forEach((product) => expect(product).to.be.an("object"));
+    });
+  });
+
+  describe("#getById", () => {
+    it("retorna um array contendo id e name se houver produto", async () => {
+      sinon.stub(saleModel, "getById").resolves(saleById);
+      const response = await saleService.getById(1);
+      expect(response).to.be.an("array");
+      expect(response).to.have.length(2);
+    });
+
+    it("retorna uma exceção se não houver produto", () => {
+      sinon.stub(saleModel, "getById").resolves(false);
+      expect(saleService.getById(200)).to.be.rejectedWith(NotFoundError);
     });
   });
 });
