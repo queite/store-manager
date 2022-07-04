@@ -1,16 +1,12 @@
 const NotFoundError = require('../helpers/NotFoundError');
 const { validateSchema, schemas } = require('../helpers/validations');
 const saleModel = require('../models/saleModel');
-const productModel = require('../models/productModel');
-
-const existProductId = async (array) => {
-  const exist = await Promise.all(array.map(({ productId }) => productModel.getById(productId)));
-  if (exist.includes(undefined)) throw new NotFoundError('Product not found');
-};
+const productService = require('./productService');
 
 const insertSaleProduct = async (array) => {
   array.forEach((element) => validateSchema(schemas.sales, element));
-  await existProductId(array);
+  const ids = array.map(({ productId }) => productId);
+  await productService.existProductId(ids);
   const id = await saleModel.insertSaleProduct(array);
   return { id, itemsSold: array };
 };
