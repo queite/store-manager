@@ -3,6 +3,7 @@ const { expect } = require('chai');
 const saleModel = require('../../../models/saleModel');
 const { salesList } = require('../../unit/mocks/salesMock');
 const connection = require('../../../models/connection');
+const { successfullyQuery } = require('../mocks/productsMock');
 
 describe('Model de vendas', () => {
 
@@ -42,15 +43,22 @@ describe('Model de vendas', () => {
   });
 
   describe('#getById', () => {
-    sinon.stub(saleModel, "getById").resolves(salesList);
+    sinon.stub(saleModel, 'getById').resolves(salesList);
 
-    it("retorna um array de objetos com as propriedades productId, quantity, saleId e date", async () => {
+    it('retorna um array de objetos com as propriedades productId, quantity, saleId e date', async () => {
       const response = await saleModel.getById(1);
       expect(response).to.be.an('array');
       response.forEach((sale) => expect(sale)
           .to.be.an('object')
           .that.has.all.keys('productId', 'quantity', 'date')
       );
+    });
+  });
+
+  describe('#deleteSale', () => {
+    it('deleta venda ao receber um id', async () => {
+      sinon.stub(connection, 'execute').resolves(successfullyQuery);
+      expect(saleModel.deleteSale(1)).to.eventually.deep.eq(successfullyQuery);
     });
   });
 });

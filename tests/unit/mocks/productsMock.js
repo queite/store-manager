@@ -23,9 +23,18 @@ const successfullyQuery = {
   affectedRows: 1
 };
 
+const searchResult =
+  [
+    {
+      id: 1,
+      name: "Martelo de Thor",
+    },
+  ];
+
 module.exports = {
   products,
   product,
   getByIdResponse,
   successfullyQuery,
+  searchResult,
 };

@@ -5,9 +5,10 @@ const {
   products,
   product,
   successfullyQuery,
-} = require("../mocks/productsMock");
+  searchResult,
+} = require('../mocks/productsMock');
 const connection = require('../../../models/connection');
-const chaiAsPromised = require("chai-as-promised");
+const chaiAsPromised = require('chai-as-promised');
 
 use(chaiAsPromised);
 
@@ -52,15 +53,22 @@ describe('Model de produtos', () => {
 
   describe('#update', () => {
     it('atualiza nome do produto ao receber id', async () => {
-      sinon.stub(connection, "execute").resolves(successfullyQuery);
+      sinon.stub(connection, 'execute').resolves(successfullyQuery);
       expect(productModel.update()).to.eventually.deep.eq(successfullyQuery);
     });
   });
 
-  describe("#deleteProduct", () => {
+  describe('#deleteProduct', () => {
     it('ao receber um id de produto o salva no banco', async () => {
-      sinon.stub(connection, "execute").resolves(successfullyQuery);
+      sinon.stub(connection, 'execute').resolves(successfullyQuery);
       expect(productModel.deleteProduct(1)).to.eventually.deep.eq(successfullyQuery);
+    });
+  });
+
+  describe('#search', () => {
+    it('busca pelo nome do produto ao receber uma string', async () => {
+      sinon.stub(connection, 'execute').resolves(searchResult);
+      expect(productModel.search('%Martelo%')).to.eventually.deep.eq(searchResult);
     });
   });
 });

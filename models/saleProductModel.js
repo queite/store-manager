@@ -9,8 +9,7 @@ const insertSaleProduct = async (saleId, array) => {
     productId,
     quantity,
   ]);
-  const [{ affectedRows }] = await connection.query(insertQuery, [values]);
-  return !!affectedRows;
+  await connection.query(insertQuery, [values]);
 };
 
 const update = async (saleId, productId, quantity) => {
