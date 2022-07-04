@@ -33,10 +33,16 @@ const update = async (obj, id) => {
   return data;
 };
 
+const deleteProduct = async (id) => {
+  await existProductId([id]);
+  await productModel.deleteProduct(id);
+};
+
 module.exports = {
   listAll,
   getById,
   insertProduct,
   update,
   existProductId,
+  deleteProduct,
 };
