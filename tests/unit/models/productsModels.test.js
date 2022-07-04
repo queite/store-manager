@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 const productModel = require('../../../models/productModel');
-const { products, product } = require('../../../helpers/productsMock');
+const { products, product, successfullyDeleted } = require('../mocks/productsMock');
 const connection = require('../../../models/connection');
 
 describe('Model de produtos', () => {
@@ -39,7 +39,14 @@ describe('Model de produtos', () => {
     it('retorna um id', async () => {
       sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);
       const response = await productModel.insertProduct({ name: 'ProdutoX' });
-      expect(response).to.be.equal(1);
+      expect(response).to.be.deep.equal(1);
+    });
+  });
+
+  describe("#deleteProduct", () => {
+    it('ao receber um id de produto o salva no banco', async () => {
+      sinon.stub(connection, "execute").resolves(successfullyDeleted);
+      expect(productModel.deleteProduct()).to.eventually.deep.eq(successfullyDeleted);
     });
   });
 });

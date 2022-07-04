@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 const saleService = require('../../../services/saleService');
-const { salesResponse, salesList, saleById } = require('../../../helpers/salesMock');
+const { salesResponse, salesList, saleById } = require('../../unit/mocks/salesMock');
 const saleController = require('../../../controllers/saleController');
 
 describe('Controller de vendas', () => {

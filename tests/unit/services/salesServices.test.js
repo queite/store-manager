@@ -2,9 +2,15 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const saleService = require('../../../services/saleService');
 const saleModel = require('../../../models/saleModel');
-const { salesResponse, salesArray, salesWrongArray, salesList, saleById } = require('../../../helpers/salesMock');
 const productModel = require('../../../models/productModel');
-const { getByIdResponse } = require('../../../helpers/productsMock');
+const {
+  getByIdResponse,
+  salesResponse,
+  salesArray,
+  salesWrongArray,
+  salesList,
+  saleById,
+} = require("../../unit/mocks/salesMock");
 const NotFoundError = require('../../../helpers/NotFoundError');
 
 describe('Service de Vendas', () => {

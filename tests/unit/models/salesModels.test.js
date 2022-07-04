@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 const saleModel = require('../../../models/saleModel');
-const { salesArray, salesList, salesResponse } = require('../../../helpers/salesMock');
+const { salesList } = require('../../unit/mocks/salesMock');
 const connection = require('../../../models/connection');
 
 describe('Model de vendas', () => {
