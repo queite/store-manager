@@ -20,11 +20,6 @@ const insertSaleProduct = async (array) => {
   return saleId;
 };
 
-const deleteSale = async (id) => {
-  const query = 'DELETE FROM StoreManager.sales WHERE id = ? ';
-  await connection.execute(query, [id]);
-};
-
 const listAll = async () => {
   const query = `
   SELECT s.id AS saleId, s.date, sp.product_id AS productId, sp.quantity
@@ -48,6 +43,11 @@ const getById = async (id) => {
   `;
   const [sale] = await connection.execute(query, [id]);
   return sale;
+};
+
+const deleteSale = async (id) => {
+  const query = 'DELETE FROM StoreManager.sales WHERE id = ? ';
+  await connection.execute(query, [id]);
 };
 
 module.exports = {
