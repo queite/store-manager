@@ -125,5 +125,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "ce8e7bc1-9065-46f3-ab2a-9be8cb651481",
+    "colId": "fd4df1ae-2a2d-4fc6-b220-36932385caaf",
+    "containerId": "10425c9c-5dae-4207-a740-1d41f5e3abcd",
+    "name": "/:id",
+    "url": "localhost:3000/sales/1",
+    "method": "DELETE",
+    "sortNum": 100000,
+    "created": "2022-07-04T16:20:27.208Z",
+    "modified": "2022-07-04T16:25:52.748Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

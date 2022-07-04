@@ -12,10 +12,17 @@ const insertSaleProduct = async (array) => {
     INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ?
   `;
   const values = array.map(({ productId, quantity }) => [
-    saleId, productId, quantity,
+    saleId,
+    productId,
+    quantity,
   ]);
   await connection.query(insertQuery, [values]);
   return saleId;
+};
+
+const deleteSale = async (id) => {
+  const query = 'DELETE FROM StoreManager.sales WHERE id = ? ';
+  await connection.execute(query, [id]);
 };
 
 const listAll = async () => {
@@ -48,4 +55,5 @@ module.exports = {
   insertSale,
   listAll,
   getById,
+  deleteSale,
 };

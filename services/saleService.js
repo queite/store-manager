@@ -22,8 +22,19 @@ const getById = async (id) => {
   return sale;
 };
 
+const existSaleId = async (id) => {
+  const exist = await saleModel.getById(id);
+  if (!exist.length) throw new NotFoundError('Sale not found');
+};
+
+const deleteSale = async (id) => {
+  await existSaleId(id);
+  await saleModel.deleteSale(id);
+};
+
 module.exports = {
   insertSaleProduct,
   listAll,
   getById,
+  deleteSale,
 };
