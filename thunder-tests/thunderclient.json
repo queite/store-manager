@@ -149,12 +149,12 @@
     "method": "PUT",
     "sortNum": 110000,
     "created": "2022-07-04T16:51:39.438Z",
-    "modified": "2022-07-04T17:06:40.007Z",
+    "modified": "2022-07-04T17:58:38.054Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "  [\n    {\n      \"productId\": \"\",\n      \"quantity\":10\n    },\n    {\n      \"productId\": 2,\n      \"quantity\":50\n    }\n  ]",
+      "raw": "  [\n    {\n      \"productId\": \"1\",\n      \"quantity\":10\n    },\n    {\n      \"productId\": 2,\n      \"quantity\":50\n    }\n  ]",
       "form": []
     },
     "tests": []

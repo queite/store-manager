@@ -6,19 +6,19 @@ const insertSale = async () => {
   return insertId;
 };
 
-const insertSaleProduct = async (array) => {
-  const saleId = await insertSale();
-  const insertQuery = `
-    INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ?
-  `;
-  const values = array.map(({ productId, quantity }) => [
-    saleId,
-    productId,
-    quantity,
-  ]);
-  await connection.query(insertQuery, [values]);
-  return saleId;
-};
+// const insertSaleProduct = async (array) => {
+//   const saleId = await insertSale();
+//   const insertQuery = `
+//     INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ?
+//   `;
+//   const values = array.map(({ productId, quantity }) => [
+//     saleId,
+//     productId,
+//     quantity,
+//   ]);
+//   await connection.query(insertQuery, [values]);
+//   return saleId;
+// };
 
 const listAll = async () => {
   const query = `
@@ -51,7 +51,7 @@ const deleteSale = async (id) => {
 };
 
 module.exports = {
-  insertSaleProduct,
+  // insertSaleProduct,
   insertSale,
   listAll,
   getById,

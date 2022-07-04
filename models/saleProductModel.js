@@ -1,5 +1,18 @@
 const connection = require('./connection');
 
+const insertSaleProduct = async (saleId, array) => {
+  const insertQuery = `
+    INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ?
+  `;
+  const values = array.map(({ productId, quantity }) => [
+    saleId,
+    productId,
+    quantity,
+  ]);
+  const [{ affectedRows }] = await connection.query(insertQuery, [values]);
+  return !!affectedRows;
+};
+
 const update = async (saleId, productId, quantity) => {
   const updateQuery = `
     UPDATE StoreManager.sales_products
@@ -11,5 +24,6 @@ const update = async (saleId, productId, quantity) => {
 };
 
 module.exports = {
+  insertSaleProduct,
   update,
 };

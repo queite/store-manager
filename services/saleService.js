@@ -9,7 +9,8 @@ const insertSaleProduct = async (array) => {
   const ids = array.map(({ productId }) => productId);
   await productService.existProductId(ids);
 
-  const id = await saleModel.insertSaleProduct(array);
+  const id = await saleModel.insertSale();
+  await saleProductModel.insertSaleProduct(id, array);
   return { id, itemsSold: array };
 };
 
