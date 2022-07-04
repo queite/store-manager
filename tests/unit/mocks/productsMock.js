@@ -19,7 +19,7 @@ const getByIdResponse = {
   name: 'Martelo de Thor',
 };
 
-const successfullyDeleted = {
+const successfullyQuery = {
   affectedRows: 1
 };
 
@@ -27,5 +27,5 @@ module.exports = {
   products,
   product,
   getByIdResponse,
-  successfullyDeleted,
+  successfullyQuery,
 };

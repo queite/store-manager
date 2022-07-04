@@ -1,8 +1,15 @@
 const sinon = require('sinon');
-const { expect } = require('chai');
+const { expect, use } = require('chai');
 const productModel = require('../../../models/productModel');
-const { products, product, successfullyDeleted } = require('../mocks/productsMock');
+const {
+  products,
+  product,
+  successfullyQuery,
+} = require("../mocks/productsMock");
 const connection = require('../../../models/connection');
+const chaiAsPromised = require("chai-as-promised");
+
+use(chaiAsPromised);
 
 describe('Model de produtos', () => {
 
@@ -43,10 +50,17 @@ describe('Model de produtos', () => {
     });
   });
 
+  describe('#update', () => {
+    it('atualiza nome do produto ao receber id', async () => {
+      sinon.stub(connection, "execute").resolves(successfullyQuery);
+      expect(productModel.update()).to.eventually.deep.eq(successfullyQuery);
+    });
+  });
+
   describe("#deleteProduct", () => {
     it('ao receber um id de produto o salva no banco', async () => {
-      sinon.stub(connection, "execute").resolves(successfullyDeleted);
-      expect(productModel.deleteProduct()).to.eventually.deep.eq(successfullyDeleted);
+      sinon.stub(connection, "execute").resolves(successfullyQuery);
+      expect(productModel.deleteProduct(1)).to.eventually.deep.eq(successfullyQuery);
     });
   });
 });
