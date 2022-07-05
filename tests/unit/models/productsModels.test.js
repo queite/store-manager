@@ -34,12 +34,11 @@ describe('Model de produtos', () => {
   });
 
   describe('#getById', () => {
-    sinon.stub(connection, 'execute').resolves(product)
 
     it('retorna um objeto com as propriedades id e name', async () => {
+      sinon.stub(connection, 'execute').resolves([[product]]);
       const response = await productModel.getById(1);
-      expect(response).to.be.an('object');
-      expect(response).to.have.keys[('id', 'name')];
+      expect(response).to.be.deep.eq(product);
     });
   });
 

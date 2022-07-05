@@ -33,7 +33,7 @@ describe('Service de produtos', () => {
     });
 
     it('retorna uma exceção se não houver produto', () => {
-      sinon.stub(productModel, 'getById').resolves(false);
+      sinon.stub(productModel, 'getById').resolves(undefined);
       expect(productService.getById(200)).to.be.rejectedWith(NotFoundError);
     });
   });

@@ -26,7 +26,7 @@ const update = async (req, res) => {
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
   await productService.deleteProduct(id);
-  res.status(204).send();
+  res.sendStatus(204);
 };
 
 const search = async (req, res) => {

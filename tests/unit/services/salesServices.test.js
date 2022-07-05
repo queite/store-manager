@@ -4,13 +4,12 @@ const saleService = require('../../../services/saleService');
 const saleModel = require('../../../models/saleModel');
 const productModel = require('../../../models/productModel');
 const {
-  getByIdResponse,
   salesResponse,
   salesArray,
   salesWrongArray,
   salesList,
   saleById,
-} = require("../../unit/mocks/salesMock");
+} = require('../../unit/mocks/salesMock');
 const NotFoundError = require('../../../helpers/NotFoundError');
 
 describe('Service de Vendas', () => {
@@ -30,7 +29,7 @@ describe('Service de Vendas', () => {
     });
 
     it('quando não há produto com id especificado retorna erro o NotFoundError', async () => {
-      sinon.stub(productModel, 'getById').resolves(getByIdResponse);
+      sinon.stub(productModel, 'getById').resolves(false);
       expect(saleService.insertSaleProduct(salesWrongArray)).to.be.rejectedWith(NotFoundError);
     });
   });
@@ -53,8 +52,8 @@ describe('Service de Vendas', () => {
       expect(response).to.have.length(2);
     });
 
-    it("retorna uma exceção se não encontrar o id", () => {
-      sinon.stub(saleModel, "getById").resolves(false);
+    it('retorna uma exceção se não encontrar o id', () => {
+      sinon.stub(saleModel, 'getById').resolves(false);
       expect(saleService.getById(200)).to.be.rejectedWith(NotFoundError);
     });
   });

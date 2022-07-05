@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const { products, product } = require('../../unit/mocks/productsMock');
+const { products, product, searchResult } = require('../../unit/mocks/productsMock');
 
 const productsController = require('../../../controllers/productController');
 const productService = require('../../../services/productService');
@@ -10,9 +10,9 @@ describe('Controller de produtos', () => {
   const req = {};
 
   beforeEach(() => {
-
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub();
+    res.sendStatus = sinon.stub();
   });
 
   afterEach(() => {
@@ -44,7 +44,8 @@ describe('Controller de produtos', () => {
   describe('#getById', () => {
 
     beforeEach(() => {
-      req.params = {id: 1}
+      req.params = { id: 1 }
+      sinon.stub(productService, 'getById').resolves(product);
     });
 
     it('chama o método status com o valor 200', async () => {
@@ -55,6 +56,7 @@ describe('Controller de produtos', () => {
     it('chama o método json com um objeto contendo as propriedades id e name', async () => {
       await productsController.getById(req, res);
       expect(res.json).to.have.keys[('id', 'name')];
+      expect(res.json.calledWith(product)).to.be.eq(true);
     });
   });
 
@@ -62,6 +64,7 @@ describe('Controller de produtos', () => {
 
       beforeEach(() => {
         req.body = { name: 'ProdutoY' };
+        sinon.stub(productService, 'insertProduct').resolves(4);
       });
 
     it('chama o método status com o valor 201', async () => {
@@ -72,6 +75,30 @@ describe('Controller de produtos', () => {
     it('chama o método json com um objeto contendo as propriedades id e name', async () => {
       await productsController.insertProduct(req, res);
       expect(res.json).to.have.keys[('id', 'name')];
+    });
+  });
+
+  describe('#deleteProduct', () => {
+
+    it('chama o método status com o valor 204', async () => {
+      req.params = { id: 1 };
+      res.sendStatus = sinon.stub();
+      sinon.stub(productService, 'existProductId').resolves();
+      sinon.stub(productService, 'deleteProduct').resolves();
+      await productsController.deleteProduct(req, res);
+      expect(res.sendStatus.calledWith(204)).to.be.equal(true);
+    });
+  });
+
+  describe('#search', () => {
+
+    beforeEach(() => {
+      req.query = { q: 'Martelo' };
+    });
+
+    it('chama o método status com o valor 200', async () => {
+      await productsController.search(req, res);
+      expect(res.status.calledWith(200)).to.be.equal(true);
     });
   });
 });
