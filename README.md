@@ -61,6 +61,10 @@ Install dependencies:
 ```
 npm install
 ```
+Run database service on docker:
+```
+docker compose up -d db
+```
 Start the API:
 ```
 npm start
