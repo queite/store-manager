@@ -27,7 +27,7 @@ Delete sale | DELETE /sales/:id
 ## 📜Documentation
 Access the route `/api-docs` to see the documentation.
 
-Ex.: http://localhost:3000/api-docs
+Ex.: `http://localhost:3000/api-docs`
 
 <br>
 
