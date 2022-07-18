@@ -24,8 +24,13 @@ Update sale | PUT /sales/:id
 Delete sale | DELETE /sales/:id
 <br/>
 
-### Documentation
-Access the route /api-docs to see the documentation.
+## 📜Documentation
+Access the route `/api-docs` to see the documentation.
+
+Ex.: http://localhost:3000/api-docs
+
+<br>
+
 ---
 
 🛠️ **Used tools:**
@@ -43,4 +48,22 @@ Access the route /api-docs to see the documentation.
 
 ---
 
+## How to install the application:
+Download the code:
+```
+git clone git@github.com:queite/store-manager.git
+```
+Enter the root folder:
+```
+cd store-manager
+```
+Install dependencies:
+```
+npm install
+```
+Start the API:
+```
+npm start
+```
+---
 All [Trybe](https://www.betrybe.com/) projects use `linters`, `Git` and `GitHub`.<br/>
