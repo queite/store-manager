@@ -22,9 +22,10 @@ List all sales | GET /sales
 Register and validate sales | POST /sales
 Update sale | PUT /sales/:id
 Delete sale | DELETE /sales/:id
-
 <br/>
 
+### Documentation
+Access the route /api-docs to see the documentation.
 ---
 
 🛠️ **Used tools:**
@@ -35,6 +36,10 @@ Delete sale | DELETE /sales/:id
 * [Chai](https://www.chaijs.com/)
 * [Sinon](https://sinonjs.org/)
 * [Joi](https://joi.dev/api/?v=17.6.0)
+* [Swagger](https://swagger.io/)
+* [dotenv](https://www.npmjs.com/package/dotenv)
+* [express-async-errors](https://www.npmjs.com/package/express-async-errors)
+* [nodemon](https://www.npmjs.com/package/nodemon)
 
 ---
 
