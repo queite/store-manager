@@ -2,7 +2,7 @@
 
 Project developed in the Back-end Module at the [Trybe](https://www.betrybe.com/) course.
 
-## 🎯
+### 🎯
 This project goal was developt a RESTful API to manage sales with the MSC software architecture and test it.
 The API presents all the CRUD operations.
 The tests were made with Mocha, Chai and Sinon.
